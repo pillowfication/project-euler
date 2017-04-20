@@ -4,7 +4,7 @@ let biggestFactor = 1;
 while (num > 1) {
   for (let i = 2; i <= num; ++i) {
     if (num % i === 0) {
-      biggestFactor = i > biggestFactor ? i : biggestFactor;
+      biggestFactor = Math.max(biggestFactor, i);
       num /= i;
     }
   }
