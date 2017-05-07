@@ -25,12 +25,17 @@
 
 module.exports = () => {
   function countDivisors(num) {
+    const sqRoot = Math.sqrt(num);
     let count = 0;
 
-    for (let i = 1; i <= num; ++i) {
+    for (let i = 1; i < sqRoot; ++i) {
       if (num % i === 0) {
-        ++count;
+        count += 2;
       }
+    }
+
+    if (Math.floor(sqRoot) === sqRoot) {
+      ++count;
     }
 
     return count;
