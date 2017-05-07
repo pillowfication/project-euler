@@ -25,7 +25,7 @@
 
 module.exports = () => {
   const fs = require('fs');
-  const file = fs.readFileSync(__dirname + '/../resources/p067_triangle.txt');
+  const file = fs.readFileSync(__dirname + '/../../resources/p067_triangle.txt');
   const triangle = String(file).split('\n')
     .map(line => line.split(' ').map(Number));
   triangle.pop(); // trailing \n
