@@ -1,13 +1,21 @@
-let num = 600851475143;
-let biggestFactor = 1;
+/**
+ * Largest prime factor
+ *
+ * The prime factors of 13195 are 5, 7, 13 and 29.
+ *
+ * What is the largest prime factor of the number 600851475143 ?
+ */
 
-while (num > 1) {
-  for (let i = 2; i <= num; ++i) {
-    if (num % i === 0) {
-      biggestFactor = Math.max(biggestFactor, i);
-      num /= i;
+module.exports = () => {
+  let number = 600851475143;
+  let biggestFactor = 1;
+
+  for (let factor = 2; factor <= number; ++factor) {
+    while (number % factor === 0) {
+      biggestFactor = factor;
+      number /= factor;
     }
   }
-}
 
-module.exports = biggestFactor;
+  return biggestFactor;
+};

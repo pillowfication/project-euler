@@ -1,16 +1,26 @@
-const oddPrimes = [];
-let sum = 2;
+/**
+ * Summation of primes
+ *
+ * The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+ *
+ * Find the sum of all the primes below two million.
+ */
 
-search: for (let next = 3; next < 2000000; next += 2) {
-  for (const prime of oddPrimes) {
-    if (next % prime === 0) {
-      continue search;
+module.exports = () => {
+  const isNotPrime = [];
+  let sum = 0;
+
+  for (let num = 2; num < 2000000; ++num) {
+    if (isNotPrime[num]) {
+      continue;
+    }
+
+    sum += num;
+
+    for (let notPrime = num * 2; notPrime < 2000000; notPrime += num) {
+      isNotPrime[notPrime] = true;
     }
   }
 
-  sum += next;
-  oddPrimes.push(next);
-  console.log(next);
-}
-
-module.exports = sum;
+  return sum;
+};
