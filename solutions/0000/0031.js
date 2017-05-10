@@ -14,37 +14,22 @@
  */
 
 module.exports = () => {
-  const now = Date.now();
   const coins = [1, 2, 5, 10, 20, 50, 100, 200];
 
-  let countWays = 0;
-  let currNodes = [{smallest: 0, value: 0}];
-
-  while (currNodes.length > 0) {
-    console.log(currNodes.length)
-    let nextNodes = [];
-
-    for (const currNode of currNodes) {
-      for (const coin of coins) {
-        if (coin >= currNode.smallest) { // Increasing to prevents dupes
-          nextNodes.push({smallest: coin, value: currNode.value + coin});
-        }
-      }
+  function countWays(value, maxCoinIndex) {
+    if (value === 0 || maxCoinIndex === 0) {
+      return 1;
     }
 
-    for (let index = 0; index < nextNodes.length; ++index) {
-      const nextNode = nextNodes[index];
-      if (nextNode.value === 200) {
-        ++countWays;
-      }
-      if (nextNode.value >= 200) {
-        nextNodes.splice(index--, 1);
-      }
+    const coin = coins[maxCoinIndex];
+    let numWays = 0;
+
+    for (let coinValue = 0; coinValue <= value; coinValue += coin) {
+      numWays += countWays(value - coinValue, maxCoinIndex - 1);
     }
 
-    currNodes = nextNodes;
+    return numWays;
   }
 
-  console.log(Date.now() - now);
-  return countWays;
+  return countWays(200, coins.length - 1);
 };
