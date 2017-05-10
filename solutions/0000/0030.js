@@ -23,7 +23,6 @@ module.exports = () => {
     if (digitValue < maxValue) {
       break;
     }
-    ++length;
     maxValue = 10 * maxValue + 9;
   }
 
