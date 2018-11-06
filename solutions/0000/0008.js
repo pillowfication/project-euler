@@ -1,6 +1,6 @@
 /**
  * Largest product in a series
- * 
+ *
  * The four adjacent digits in the 1000-digit number that have the greatest
  * product are 9 × 9 × 8 × 9 = 5832.
  *
@@ -50,20 +50,20 @@ module.exports = () => {
     '07198403850962455444362981230987879927244284909188' +
     '84580156166097919133875499200524063689912560717606' +
     '05886116467109405077541002256983155200055935729725' +
-    '71636269561882670428252483600823257530420752963450';
+    '71636269561882670428252483600823257530420752963450'
 
-  let maxProduct = 0;
+  let maxProduct = 0
 
   for (let index = 0; index <= 1000 - 13; ++index) {
-    let product = 1;
-    for (n = 0; n < 13; ++n) {
-      product *= Number(digits[index + n]);
+    let product = 1
+    for (let n = 0; n < 13; ++n) {
+      product *= Number(digits[index + n])
     }
 
     if (product > maxProduct) {
-      maxProduct = product;
+      maxProduct = product
     }
   }
 
-  return maxProduct;
-};
+  return maxProduct
+}

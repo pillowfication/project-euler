@@ -18,54 +18,54 @@
  */
 
 module.exports = () => {
-  function gcd(a, b) {
-    const rem = a % b;
+  function gcd (a, b) {
+    const rem = a % b
     if (a === b || rem === 0) {
-      return b;
+      return b
     }
     return gcd(b, rem)
   }
 
   // Given a > c, aᵇ = cᵈ -> cᵈ/ᵇ = a
-  function isEqual(a, b, c, d) {
-    let div = gcd(d, b);
-    d /= div;
-    b /= div;
+  function isEqual (a, b, c, d) {
+    let div = gcd(d, b)
+    d /= div
+    b /= div
 
-    let brtC;
+    let brtC
     for (brtC = 1; ; ++brtC) {
-      const pow = brtC ** b;
+      const pow = brtC ** b
       if (pow > c) {
-        return false;
+        return false
       }
       if (pow === c) {
-        break;
+        break
       }
     }
 
-    return brtC ** d === a;
+    return brtC ** d === a
   }
 
-  function hasReduceable(a, b) {
+  function hasReduceable (a, b) {
     for (let c = 2; c < a; ++c) {
       for (let d = b + 1; d <= 100; ++d) {
         if (isEqual(a, b, c, d)) {
-          return true;
+          return true
         }
       }
     }
-    return false;
+    return false
   }
 
-  let distinctCount = 0;
+  let distinctCount = 0
 
   for (let a = 2; a <= 100; ++a) {
     for (let b = 2; b <= 100; ++b) {
       if (!hasReduceable(a, b)) {
-        ++distinctCount;
+        ++distinctCount
       }
     }
   }
 
-  return distinctCount;
-};
+  return distinctCount
+}

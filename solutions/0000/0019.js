@@ -32,35 +32,35 @@ module.exports = () => {
     10: 31,
     11: 30,
     12: 31
-  };
-
-  function isLeapYear(year) {
-    if (year % 400 === 0) {
-      return true;
-    }
-    if (year % 100 === 0) {
-      return false;
-    }
-    return year % 4 === 0;
   }
 
-  let currentDay = 1; // 1 Jan 1900 was a Monday
-  let sundaysCount = 0;
+  function isLeapYear (year) {
+    if (year % 400 === 0) {
+      return true
+    }
+    if (year % 100 === 0) {
+      return false
+    }
+    return year % 4 === 0
+  }
+
+  let currentDay = 1 // 1 Jan 1900 was a Monday
+  let sundaysCount = 0
 
   for (let year = 1900; year <= 2000; ++year) {
     for (let month = 1; month <= 12; ++month) {
       if (currentDay % 7 === 0 && year > 1900) {
-        ++sundaysCount;
+        ++sundaysCount
       }
 
-      let numDays = daysInMonth[month];
+      let numDays = daysInMonth[month]
       if (month === 2 && isLeapYear(year)) {
-        ++numDays;
+        ++numDays
       }
 
-      currentDay += numDays;
+      currentDay += numDays
     }
   }
 
-  return sundaysCount;
-};
+  return sundaysCount
+}

@@ -17,27 +17,27 @@
  */
 
 module.exports = () => {
-  let maxValue = 9;
+  let maxValue = 9
   for (let length = 1; ; ++length) {
-    const digitValue = (9 ** 5) * length;
+    const digitValue = (9 ** 5) * length
     if (digitValue < maxValue) {
-      break;
+      break
     }
-    maxValue = 10 * maxValue + 9;
+    maxValue = 10 * maxValue + 9
   }
 
-  let sum = 0;
+  let sum = 0
 
   for (let num = 2; num <= maxValue; ++num) {
-    let digitSum = 0;
+    let digitSum = 0
     for (const digit of String(num)) {
-      digitSum += Number(digit) ** 5;
+      digitSum += Number(digit) ** 5
     }
 
     if (digitSum === num) {
-      sum += num;
+      sum += num
     }
   }
 
-  return sum;
-};
+  return sum
+}

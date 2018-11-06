@@ -27,32 +27,32 @@
  */
 
 module.exports = () => {
-  function addNumbers(a, b) {
-    let sum = '';
+  function addNumbers (a, b) {
+    let sum = ''
 
     for (let exp = 0, carryOver = 0; ; ++exp) {
-      let aDigit = a[a.length - 1 - exp];
-      let bDigit = b[b.length - 1 - exp];
+      let aDigit = a[a.length - 1 - exp]
+      let bDigit = b[b.length - 1 - exp]
 
       if (!aDigit && !bDigit) {
         if (carryOver > 0) {
-          sum = String(carryOver) + sum;
+          sum = String(carryOver) + sum
         }
-        return sum;
+        return sum
       }
 
-      const digitSum = (Number(aDigit) || 0) + (Number(bDigit) || 0) + carryOver;
-      sum = String(digitSum % 10) + sum;
+      const digitSum = (Number(aDigit) || 0) + (Number(bDigit) || 0) + carryOver
+      sum = String(digitSum % 10) + sum
       carryOver = Math.floor(digitSum / 10)
     }
   }
 
-  let index;
-  let [fibPrev, fibCurr] = ['1', '1'];
+  let index
+  let [ fibPrev, fibCurr ] = [ '1', '1' ]
 
   for (index = 2; fibCurr.length < 1000; ++index) {
-    [fibPrev, fibCurr] = [fibCurr, addNumbers(fibPrev, fibCurr)];
+    [ fibPrev, fibCurr ] = [ fibCurr, addNumbers(fibPrev, fibCurr) ]
   }
 
-  return index;
-};
+  return index
+}

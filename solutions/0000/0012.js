@@ -24,26 +24,26 @@
  */
 
 module.exports = () => {
-  function countDivisors(num) {
-    const sqrt = Math.sqrt(num);
-    let count = 0;
+  function countDivisors (num) {
+    const sqrt = Math.sqrt(num)
+    let count = 0
 
     for (let i = 1; i < sqrt; ++i) {
       if (num % i === 0) {
-        count += 2;
+        count += 2
       }
     }
 
     if (Math.floor(sqrt) === sqrt) {
-      ++count;
+      ++count
     }
 
-    return count;
+    return count
   }
 
   for (let n = 1, triangle = n; ; ++n, triangle += n) {
     if (countDivisors(triangle) > 500) {
-      return triangle;
+      return triangle
     }
   }
-};
+}

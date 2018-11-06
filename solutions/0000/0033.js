@@ -16,56 +16,56 @@
  */
 
 module.exports = () => {
-  function gcd(a, b) {
+  function gcd (a, b) {
     if (b === 0) {
-      return a;
+      return a
     }
-    return gcd(b, a % b);
+    return gcd(b, a % b)
   }
 
-  const foundFracs = [];
+  const foundFracs = []
 
   for (let numerator = 10; numerator <= 99; ++numerator) {
     const num = {
       tens: Math.floor(numerator / 10),
       ones: numerator % 10
-    };
+    }
     if (num.ones === 0) {
-      continue;
+      continue
     }
 
-    const denominators = [];
+    const denominators = []
     for (let digit = 1; digit <= 9; ++digit) {
-      denominators.push({tens: digit,    ones: num.tens});
-    //denominators.push({tens: digit,    ones: num.ones});
-    //denominators.push({tens: num.tens, ones: digit   });
-      denominators.push({tens: num.ones, ones: digit   });
+      denominators.push({ tens: digit, ones: num.tens })
+      // denominators.push({ tens: digit, ones: num.ones })
+      // denominators.push({ tens: num.tens, ones: digit })
+      denominators.push({ tens: num.ones, ones: digit })
     }
 
-    const numVal = num.tens * 10 + num.ones;
+    const numVal = num.tens * 10 + num.ones
     for (const den of denominators) {
-      const denVal = den.tens * 10 + den.ones;
+      const denVal = den.tens * 10 + den.ones
       if (denVal <= numVal) {
-        continue;
+        continue
       }
 
       let reduced =
-        num.tens === den.tens ? {num: num.ones, den: den.ones} :
-        num.tens === den.ones ? {num: num.ones, den: den.tens} :
-        num.ones === den.tens ? {num: num.tens, den: den.ones} :
-      /*num.ones === den.ones*/ {num: num.tens, den: den.tens};
+        num.tens === den.tens ? { num: num.ones, den: den.ones }
+          : num.tens === den.ones ? { num: num.ones, den: den.tens }
+            : num.ones === den.tens ? { num: num.tens, den: den.ones }
+              : /* num.ones === den.ones ? */ { num: num.tens, den: den.tens }
 
       if (numVal * reduced.den === denVal * reduced.num) {
-        foundFracs.push(reduced);
+        foundFracs.push(reduced)
       }
     }
   }
 
-  const product = {num: 1, den: 1};
+  const product = { num: 1, den: 1 }
   for (const frac of foundFracs) {
-    product.num *= frac.num;
-    product.den *= frac.den;
+    product.num *= frac.num
+    product.den *= frac.den
   }
 
-  return product.den / gcd(product.den, product.num);
-};
+  return product.den / gcd(product.den, product.num)
+}

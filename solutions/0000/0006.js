@@ -17,15 +17,15 @@
  */
 
 module.exports = () => {
-  let sum = 0;
-  let sumOfSquares = 0;
+  let sum = 0
+  let sumOfSquares = 0
 
   for (let num = 1; num <= 100; ++num) {
-    sum += num;
-    sumOfSquares += num ** 2;
+    sum += num
+    sumOfSquares += num ** 2
   }
 
-  const squareOfSums = sum ** 2;
+  const squareOfSums = sum ** 2
 
-  return squareOfSums - sumOfSquares;
-};
+  return squareOfSums - sumOfSquares
+}

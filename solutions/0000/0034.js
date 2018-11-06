@@ -10,39 +10,39 @@
  */
 
 module.exports = () => {
-  function _factorial(n) {
-    let product = 1;
+  function _factorial (n) {
+    let product = 1
     for (let i = 2; i <= n; ++i) {
-      product *= i;
+      product *= i
     }
-    return product;
+    return product
   }
-  const factorial = {};
+  const factorial = {}
   for (let i = 0; i <= 9; ++i) {
-    factorial[i] = _factorial(i);
+    factorial[i] = _factorial(i)
   }
 
-  let maxValue = 9;
+  let maxValue = 9
   for (let length = 1; ; ++length) {
-    const digitValue = factorial[9] * length;
+    const digitValue = factorial[9] * length
     if (digitValue < maxValue) {
-      break;
+      break
     }
-    maxValue = 10 * maxValue + 9;
+    maxValue = 10 * maxValue + 9
   }
 
-  let sum = 0;
+  let sum = 0
 
   for (let num = 3; num <= maxValue; ++num) {
-    let digitValue = 0;
+    let digitValue = 0
     for (const digit of String(num)) {
-      digitValue += factorial[digit];
+      digitValue += factorial[digit]
     }
 
     if (digitValue === num) {
-      sum += num;
+      sum += num
     }
   }
 
-  return sum;
-};
+  return sum
+}

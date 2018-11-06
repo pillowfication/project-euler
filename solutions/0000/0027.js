@@ -27,56 +27,56 @@
  */
 
 module.exports = () => {
-  const generatePrimes = (function*() {
-    let oddPrimes = {};
+  const generatePrimes = (function * () {
+    let oddPrimes = {}
 
-    search: for (let next = 3; ; next += 2) {
+    search: for (let next = 3; ; next += 2) { // eslint-disable-line no-labels
       for (const oddPrime in oddPrimes) {
         if (next % oddPrime === 0) {
-          continue search;
+          continue search // eslint-disable-line no-labels
         }
       }
 
-      oddPrimes[next] = true;
-      yield next;
+      oddPrimes[next] = true
+      yield next
     }
-  })();
+  })()
 
-  let oddPrimes = {};
-  let last = 0;
+  let oddPrimes = {}
+  let last = 0
 
-  function isPrime(num) {
+  function isPrime (num) {
     if (num <= 1) {
-      return false;
+      return false
     }
     if (num === 2) {
-      return true;
+      return true
     }
 
     while (last < num) {
-      last = generatePrimes.next().value;
-      oddPrimes[last] = true;
+      last = generatePrimes.next().value
+      oddPrimes[last] = true
     }
 
-    return oddPrimes[num] === true;
+    return oddPrimes[num] === true
   }
 
-  let maxConsecutive = 0;
-  let maxA, maxB;
+  let maxConsecutive = 0
+  let maxA, maxB
 
   for (let a = -999; a <= 999; ++a) {
     for (let b = -1000; b <= 1000; ++b) {
-      let n = 0;
+      let n = 0
       while (isPrime(n * n + a * n + b)) {
-        ++n;
+        ++n
       }
 
       if (n > maxConsecutive) {
-        maxConsecutive = n;
-        [maxA, maxB] = [a, b];
+        maxConsecutive = n
+        ;[ maxA, maxB ] = [ a, b ]
       }
     }
   }
 
-  return maxA * maxB;
-};
+  return maxA * maxB
+}

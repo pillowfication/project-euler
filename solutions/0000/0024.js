@@ -13,29 +13,29 @@
  */
 
 module.exports = () => {
-  function getPermutations(list) {
+  function getPermutations (list) {
     if (list.length === 1) {
-      return [list];
+      return [ list ]
     }
 
-    const first = list[0];
-    const subPermutations = getPermutations(list.slice(1));
-    const permutations = [];
+    const first = list[0]
+    const subPermutations = getPermutations(list.slice(1))
+    const permutations = []
 
     for (const subPermutation of subPermutations) {
       for (let i = 0; i < list.length; ++i) {
-        const subCopy = subPermutation.slice();
-        subCopy.splice(i, 0, first);
-        permutations.push(subCopy);
+        const subCopy = subPermutation.slice()
+        subCopy.splice(i, 0, first)
+        permutations.push(subCopy)
       }
     }
 
-    return permutations;
+    return permutations
   }
 
-  const permutations = getPermutations([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+  const permutations = getPermutations([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ])
     .map(permutation => permutation.join(''))
-    .sort();
+    .sort()
 
-  return permutations[1000000 - 1];
-};
+  return permutations[1000000 - 1]
+}

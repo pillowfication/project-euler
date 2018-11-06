@@ -11,15 +11,15 @@
  */
 
 module.exports = () => {
-  let sum = 0;
-  let [fibPrev, fibCurr] = [1, 2];
+  let sum = 0
+  let [ fibPrev, fibCurr ] = [ 1, 2 ]
 
   while (fibCurr < 4000000) {
     if (fibCurr % 2 === 0) {
-      sum += fibCurr;
+      sum += fibCurr
     }
-    [fibPrev, fibCurr] = [fibCurr, fibPrev + fibCurr];
+    [ fibPrev, fibCurr ] = [ fibCurr, fibPrev + fibCurr ]
   }
 
-  return sum;
-};
+  return sum
+}

@@ -14,22 +14,22 @@
  */
 
 module.exports = () => {
-  const coins = [1, 2, 5, 10, 20, 50, 100, 200];
+  const coins = [ 1, 2, 5, 10, 20, 50, 100, 200 ]
 
-  function countWays(value, maxCoinIndex) {
+  function countWays (value, maxCoinIndex) {
     if (value === 0 || maxCoinIndex === 0) {
-      return 1;
+      return 1
     }
 
-    const coin = coins[maxCoinIndex];
-    let numWays = 0;
+    const coin = coins[maxCoinIndex]
+    let numWays = 0
 
     for (let coinValue = 0; coinValue <= value; coinValue += coin) {
-      numWays += countWays(value - coinValue, maxCoinIndex - 1);
+      numWays += countWays(value - coinValue, maxCoinIndex - 1)
     }
 
-    return numWays;
+    return numWays
   }
 
-  return countWays(200, coins.length - 1);
-};
+  return countWays(200, coins.length - 1)
+}

@@ -8,28 +8,28 @@
  */
 
 module.exports = () => {
-  function isPalindrome(num) {
-    let digits = num.toString();
+  function isPalindrome (num) {
+    let digits = num.toString()
 
     for (let index = 0; index < digits.length; ++index) {
       if (digits[index] !== digits[digits.length - 1 - index]) {
-        return false;
+        return false
       }
     }
 
-    return true;
+    return true
   }
 
-  let largestPalindrome = 0;
+  let largestPalindrome = 0
 
   for (let x = 100; x <= 999; ++x) {
     for (let y = 100; y <= 999; ++y) {
-      const product = x * y;
+      const product = x * y
       if (product > largestPalindrome && isPalindrome(product)) {
-        largestPalindrome = product;
+        largestPalindrome = product
       }
     }
   }
 
-  return largestPalindrome;
-};
+  return largestPalindrome
+}

@@ -11,31 +11,31 @@
  */
 
 module.exports = () => {
-  const isNotPrime = [];
-  const primes = {};
+  const isNotPrime = []
+  const primes = {}
 
   for (let num = 2; num < 2000000; ++num) {
     if (isNotPrime[num]) {
-      continue;
+      continue
     }
 
-    primes[num] = true;
+    primes[num] = true
 
     for (let notPrime = num * 2; notPrime < 2000000; notPrime += num) {
-      isNotPrime[notPrime] = true;
+      isNotPrime[notPrime] = true
     }
   }
 
-  let countPrimes = 0;
+  let countPrimes = 0
 
-  search: for (const prime in primes) {
+  search: for (const prime in primes) { // eslint-disable-line no-labels
     for (let i = 0; i < prime.length; ++i) {
       if (!primes[prime.slice(i) + prime.slice(0, i)]) {
-        continue search;
+        continue search // eslint-disable-line no-labels
       }
     }
-    ++countPrimes;
+    ++countPrimes
   }
 
-  return countPrimes;
-};
+  return countPrimes
+}

@@ -10,7 +10,7 @@
  * Using the rule above and starting with 13, we generate the following
  * sequence:
  *
- *   3 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+ *   13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
  *
  * It can be seen that this sequence (starting at 13 and finishing at 1)
  * contains 10 terms. Although it has not been proved yet (Collatz Problem), it
@@ -22,32 +22,31 @@
  */
 
 module.exports = () => {
-  function collatzLength(num) {
-    let length = 1;
+  function collatzLength (num) {
+    let length = 1
 
     while (num > 1) {
       if (num % 2 === 0) {
-        num = num / 2;
+        num = num / 2
+      } else {
+        num = 3 * num + 1
       }
-      else {
-        num = 3 * num + 1;
-      }
-      ++length;
+      ++length
     }
 
-    return length;
+    return length
   }
 
-  let longestLength = 0;
-  let number = 0;
+  let longestLength = 0
+  let number = 0
 
   for (let num = 1; num < 1000000; ++num) {
-    let length = collatzLength(num);
+    let length = collatzLength(num)
     if (length > longestLength) {
-      longestLength = length;
-      number = num;
+      longestLength = length
+      number = num
     }
   }
 
-  return number;
-};
+  return number
+}

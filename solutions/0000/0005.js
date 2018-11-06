@@ -9,13 +9,13 @@
  */
 
 module.exports = () => {
-  search: for (let num = 1; ; ++num) {
+  search: for (let num = 1; ; ++num) { // eslint-disable-line no-labels
     for (let i = 1; i <= 20; ++i) {
       if (num % i !== 0) {
-        continue search;
+        continue search // eslint-disable-line no-labels
       }
     }
 
-    return num;
+    return num
   }
-};
+}

@@ -8,17 +8,17 @@
  */
 
 module.exports = () => {
-  const oddPrimes = [];
+  const oddPrimes = []
 
-  search: for (let next = 3; oddPrimes.length < 10000; next += 2) {
+  search: for (let next = 3; oddPrimes.length < 10000; next += 2) { // eslint-disable-line no-labels
     for (const prime of oddPrimes) {
       if (next % prime === 0) {
-        continue search;
+        continue search // eslint-disable-line no-labels
       }
     }
 
-    oddPrimes.push(next);
+    oddPrimes.push(next)
   }
 
-  return oddPrimes[10000 - 1];
-};
+  return oddPrimes[10000 - 1]
+}

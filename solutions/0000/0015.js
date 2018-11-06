@@ -11,15 +11,15 @@
  */
 
 module.exports = () => {
-  const grid = [(new Array(20 + 1)).fill(1)];
+  const grid = [ (new Array(20 + 1)).fill(1) ]
 
   for (let row = 1; row <= 20; ++row) {
-    grid.push([1]);
+    grid.push([ 1 ])
 
     for (let col = 1; col <= 20; ++col) {
-      grid[row][col] = grid[row - 1][col] + grid[row][col - 1];
+      grid[row][col] = grid[row - 1][col] + grid[row][col - 1]
     }
   }
 
-  return grid[20][20];
-};
+  return grid[20][20]
+}

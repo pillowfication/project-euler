@@ -22,48 +22,48 @@
  */
 
 module.exports = () => {
-  function _isAbundant(num) {
-    const sqrt = Math.sqrt(num);
-    let sum = 1;
+  function _isAbundant (num) {
+    const sqrt = Math.sqrt(num)
+    let sum = 1
 
     for (let i = 2; i < sqrt; ++i) {
       if (num % i === 0) {
-        sum += i;
-        sum += num / i;
+        sum += i
+        sum += num / i
       }
       if (sum > num) {
-        return true;
+        return true
       }
     }
 
     if (Math.floor(sqrt) === sqrt) {
-      sum += sqrt;
+      sum += sqrt
     }
 
-    return sum > num;
+    return sum > num
   }
 
-  const isAbundantCache = {1: false};
-  function isAbundant(num) {
+  const isAbundantCache = { 1: false }
+  function isAbundant (num) {
     if (isAbundantCache[num] !== undefined) {
-      return isAbundantCache[num];
+      return isAbundantCache[num]
     }
-    const abundant = _isAbundant(num);
-    isAbundantCache[num] = abundant;
-    return abundant;
+    const abundant = _isAbundant(num)
+    isAbundantCache[num] = abundant
+    return abundant
   }
 
-  let sum = 0;
+  let sum = 0
 
-  search: for (let num = 1; num <= 28123; ++num) {
+  search: for (let num = 1; num <= 28123; ++num) { // eslint-disable-line no-labels
     for (let a = 1; a <= num / 2; ++a) {
-      const b = num - a;
+      const b = num - a
       if (isAbundant(a) && isAbundant(b)) {
-        continue search;
+        continue search // eslint-disable-line no-labels
       }
     }
-    sum += num;
+    sum += num
   }
 
-  return sum;
-};
+  return sum
+}

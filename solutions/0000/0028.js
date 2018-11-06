@@ -17,52 +17,52 @@
  */
 
 module.exports = () => {
-  const grid = [];
+  const grid = []
   for (let row = 0; row < 1001; ++row) {
-    grid[row] = [];
+    grid[row] = []
   }
 
-  let row = (1001 - 1) / 2;
-  let col = (1001 - 1) / 2;
-  let number = 1;
+  let row = (1001 - 1) / 2
+  let col = (1001 - 1) / 2
+  let number = 1
 
   // Initialize center
-  grid[row][col] = number;
-  --row;
-  ++col;
+  grid[row][col] = number
+  --row
+  ++col
 
   for (let length = 2; length <= 1001 - 1; length += 2) {
     // Down
     for (let i = 0; i < length; ++i) {
-      ++row;
-      grid[row][col] = ++number;
+      ++row
+      grid[row][col] = ++number
     }
     // Left
     for (let i = 0; i < length; ++i) {
-      --col;
-      grid[row][col] = ++number;
+      --col
+      grid[row][col] = ++number
     }
     // Up
     for (let i = 0; i < length; ++i) {
-      --row;
-      grid[row][col] = ++number;
+      --row
+      grid[row][col] = ++number
     }
     // Right
     for (let i = 0; i < length; ++i) {
-      ++col;
-      grid[row][col] = ++number;
+      ++col
+      grid[row][col] = ++number
     }
 
-    --row;
-    ++col;
+    --row
+    ++col
   }
 
-  let sum = 0;
+  let sum = 0
   for (let i = 0; i < 1001; ++i) {
-    sum += grid[i][i];
-    sum += grid[i][1001 - 1 - i];
+    sum += grid[i][i]
+    sum += grid[i][1001 - 1 - i]
   }
-  sum -= grid[(1001 - 1) / 2][(1001 - 1) / 2];
+  sum -= grid[(1001 - 1) / 2][(1001 - 1) / 2]
 
-  return sum;
-};
+  return sum
+}

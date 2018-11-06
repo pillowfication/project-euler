@@ -44,8 +44,8 @@ module.exports = () => {
     '1B': ['1B', '1C', '1D', '1E', '1F', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '2A'],
     '1C': ['1C', '1D', '1E', '1F', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '2A', '2B'],
     '1D': ['1D', '1E', '1F', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '2A', '2B', '2C'],
-    '1E': ['1E', '1F', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '2A', '2B', '2C', '2D'],
-  };
+    '1E': ['1E', '1F', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '2A', '2B', '2C', '2D']
+  }
   const prodTable = {
     //      0     1     2     3     4     5     6     7     8     9     A     B     C     D     E     F
     '0': ['00', '00', '00', '00', '00', '00', '00', '00', '00', '00', '00', '00', '00', '00', '00', '00'],
@@ -64,83 +64,83 @@ module.exports = () => {
     'D': ['00', '0D', '1A', '27', '34', '41', '4E', '5B', '68', '75', '82', '8F', '9C', 'A9', 'B6', 'C3'],
     'E': ['00', '0E', '1C', '2A', '38', '46', '54', '62', '70', '7E', '8C', '9A', 'A8', 'B6', 'C4', 'D2'],
     'F': ['00', '0F', '1E', '2D', '3C', '4B', '5A', '69', '78', '87', '96', 'A5', 'B4', 'C3', 'D2', 'E1']
-  };
-
-  const digits = '0123456789ABCDEF';
-  function map(table) {
-    Object.keys(table).forEach(key => {
-      const row = {};
-      for (let i = 0; i < digits.length; ++i) {
-        row[digits[i]] = table[key][i];
-      }
-      table[key] = row;
-    });
   }
-  map(sumTable);
-  map(prodTable);
 
-  function addNumbers(a, b) {
-    let sum = '';
-    let carryOver = '0';
+  const digits = '0123456789ABCDEF'
+  function map (table) {
+    Object.keys(table).forEach(key => {
+      const row = {}
+      for (let i = 0; i < digits.length; ++i) {
+        row[digits[i]] = table[key][i]
+      }
+      table[key] = row
+    })
+  }
+  map(sumTable)
+  map(prodTable)
+
+  function addNumbers (a, b) {
+    let sum = ''
+    let carryOver = '0'
 
     for (let exp = 0, max = a.length - 1; exp <= max; ++exp) {
-      let aDigit = a[max - exp];
-      let bDigit = b[max - exp];
+      let aDigit = a[max - exp]
+      let bDigit = b[max - exp]
 
-      const digitSum = sumTable[sumTable['0' + aDigit][bDigit]][carryOver];
-      sum = digitSum[1] + sum;
-      carryOver = digitSum[0];
+      const digitSum = sumTable[sumTable['0' + aDigit][bDigit]][carryOver]
+      sum = digitSum[1] + sum
+      carryOver = digitSum[0]
     }
 
-    return carryOver + sum;
+    return carryOver + sum
   }
 
-  function multiplyBy(num, multiplier) {
-    const products = [];
+  function multiplyBy (num, multiplier) {
+    const products = []
 
-    multiply: for (let multiExp = 0, multiMax = multiplier.length - 1; multiExp <= multiMax; ++multiExp) {
-      const multi = multiplier[multiMax - multiExp];
-      let product = '';
-      let carryOver = '0';
+    for (let multiExp = 0, multiMax = multiplier.length - 1; multiExp <= multiMax; ++multiExp) {
+      const multi = multiplier[multiMax - multiExp]
+      let product = ''
+      let carryOver = '0'
 
       for (let exp = 0, max = num.length - 1; exp <= max; ++exp) {
-        let digit = num[max - exp];
+        let digit = num[max - exp]
 
-        const digitProd = addNumbers(prodTable[digit][multi], '0' + carryOver);
-        product = digitProd[2] + product;
-        carryOver = digitProd[1];
+        const digitProd = addNumbers(prodTable[digit][multi], '0' + carryOver)
+        product = digitProd[2] + product
+        carryOver = digitProd[1]
       }
 
       if (carryOver !== '0') {
-        product = carryOver + product;
+        product = carryOver + product
       }
-      product += '0'.repeat(multiExp);
-      products.push(product);
+      product += '0'.repeat(multiExp)
+      products.push(product)
     }
 
-    let sum = products.pop();
+    let sum = products.pop()
     for (const num of products) {
-      sum = addNumbers(sum, '0'.repeat(sum.length - num.length) + num);
+      sum = addNumbers(sum, '0'.repeat(sum.length - num.length) + num)
       if (sum[0] === '0') {
-        sum = sum.slice(1);
+        sum = sum.slice(1)
       }
     }
 
-    return sum;
+    return sum
   }
 
-  function factorial(n) {
-    let product = '1';
-    let i = '1';
+  function factorial (n) {
+    let product = '1'
+    let i = '1'
     while (i !== n) {
-      product = multiplyBy(product, i);
-      i = addNumbers(i, '0'.repeat(i.length - 1) + '1');
+      product = multiplyBy(product, i)
+      i = addNumbers(i, '0'.repeat(i.length - 1) + '1')
       if (i[0] === '0') {
-        i = i.slice(1);
+        i = i.slice(1)
       }
     }
-    return product;
+    return product
   }
 
-  return factorial(factorial('15')).replace(/0+$/, '').slice(-12);
-};
+  return factorial(factorial('15')).replace(/0+$/, '').slice(-12)
+}

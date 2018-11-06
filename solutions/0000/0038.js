@@ -19,36 +19,36 @@
  */
 
 module.exports = () => {
-  function isPandigitalizable(integer) {
-    let pandigital = integer;
+  function isPandigitalizable (integer) {
+    let pandigital = integer
 
     for (let n = 2; pandigital < 10 ** 8; ++n) {
-      const next = integer * n;
-      pandigital = Number(String(pandigital) + String(next));
+      const next = integer * n
+      pandigital = Number(String(pandigital) + String(next))
     }
 
     if (pandigital > 987654321) {
-      return false;
+      return false
     }
 
-    pandigital = String(pandigital);
+    pandigital = String(pandigital)
     for (var i = 1; i <= 9; ++i) {
       if (!pandigital.includes(i)) {
-        return false;
+        return false
       }
     }
 
-    return Number(pandigital);
+    return Number(pandigital)
   }
 
-  let largestPandigital = 0;
+  let largestPandigital = 0
 
   for (let num = 1; num < 10 ** 5; ++num) {
-    let pandigital = isPandigitalizable(num);
+    let pandigital = isPandigitalizable(num)
     if (pandigital && pandigital > largestPandigital) {
-      largestPandigital = pandigital;
+      largestPandigital = pandigital
     }
   }
 
-  return largestPandigital;
-};
+  return largestPandigital
+}

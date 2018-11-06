@@ -16,44 +16,44 @@
  */
 
 module.exports = () => {
-  function getPermutations(list) {
+  function getPermutations (list) {
     if (list.length === 1) {
-      return [list];
+      return [ list ]
     }
 
-    const first = list[0];
-    const subPermutations = getPermutations(list.slice(1));
-    const permutations = [];
+    const first = list[0]
+    const subPermutations = getPermutations(list.slice(1))
+    const permutations = []
 
     for (const subPermutation of subPermutations) {
       for (let i = 0; i < list.length; ++i) {
-        const subCopy = subPermutation.slice();
-        subCopy.splice(i, 0, first);
-        permutations.push(subCopy);
+        const subCopy = subPermutation.slice()
+        subCopy.splice(i, 0, first)
+        permutations.push(subCopy)
       }
     }
 
-    return permutations;
+    return permutations
   }
 
-  const permutations = getPermutations([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-  const foundProducts = {};
-  let sum = 0;
+  const permutations = getPermutations([ 1, 2, 3, 4, 5, 6, 7, 8, 9 ])
+  const foundProducts = {}
+  let sum = 0
 
   for (const permutation of permutations) {
     for (let timesIndex = 1; timesIndex <= 7; ++timesIndex) {
       for (let equalsIndex = timesIndex + 1; equalsIndex <= 8; ++equalsIndex) {
-        const multiplicand = Number(permutation.slice(0, timesIndex).join(''));
-        const multiplier = Number(permutation.slice(timesIndex, equalsIndex).join(''));
-        const product = Number(permutation.slice(equalsIndex).join(''));
+        const multiplicand = Number(permutation.slice(0, timesIndex).join(''))
+        const multiplier = Number(permutation.slice(timesIndex, equalsIndex).join(''))
+        const product = Number(permutation.slice(equalsIndex).join(''))
 
         if (!foundProducts[product] && multiplicand * multiplier === product) {
-          foundProducts[product] = true;
-          sum += product;
+          foundProducts[product] = true
+          sum += product
         }
       }
     }
   }
 
-  return sum;
-};
+  return sum
+}

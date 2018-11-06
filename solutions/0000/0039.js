@@ -10,31 +10,31 @@
  */
 
 module.exports = () => {
-  function countSolutions(p) {
-    let count = 0;
+  function countSolutions (p) {
+    let count = 0
 
     for (let a = 1; a <= p / 3; ++a) {
       for (let b = a; b <= (p - a) / 2; ++b) {
-        const c = p - a - b;
+        const c = p - a - b
         if (a ** 2 + b ** 2 === c ** 2) {
-          ++count;
+          ++count
         }
       }
     }
 
-    return count;
+    return count
   }
 
-  let maxSolutions = 0;
-  let maxP = 0;
+  let maxSolutions = 0
+  let maxP = 0
 
   for (let p = 3; p <= 1000; ++p) {
-    let numSolutions = countSolutions(p);
+    let numSolutions = countSolutions(p)
     if (numSolutions > maxSolutions) {
-      maxSolutions = numSolutions;
-      maxP = p;
+      maxSolutions = numSolutions
+      maxP = p
     }
   }
 
-  return maxP;
-};
+  return maxP
+}

@@ -208,32 +208,32 @@ module.exports = () => {
     '72107838435069186155435662884062257473692284509516',
     '20849603980134001723930671666823555245252804609722',
     '53503534226472524250874054075591789781264330331690'
-  ];
+  ]
 
-  function addNumbers(a, b) {
-    let sum = '';
+  function addNumbers (a, b) {
+    let sum = ''
 
     for (let exp = 0, carryOver = 0; ; ++exp) {
-      let aDigit = a[a.length - 1 - exp];
-      let bDigit = b[b.length - 1 - exp];
+      let aDigit = a[a.length - 1 - exp]
+      let bDigit = b[b.length - 1 - exp]
 
       if (!aDigit && !bDigit) {
         if (carryOver > 0) {
-          sum = String(carryOver) + sum;
+          sum = String(carryOver) + sum
         }
-        return sum;
+        return sum
       }
 
-      const digitSum = (Number(aDigit) || 0) + (Number(bDigit) || 0) + carryOver;
-      sum = String(digitSum % 10) + sum;
+      const digitSum = (Number(aDigit) || 0) + (Number(bDigit) || 0) + carryOver
+      sum = String(digitSum % 10) + sum
       carryOver = Math.floor(digitSum / 10)
     }
   }
 
-  let sum = '0';
+  let sum = '0'
   for (const num of numbers) {
-    sum = addNumbers(sum, num);
+    sum = addNumbers(sum, num)
   }
 
-  return sum.substr(0, 10);
-};
+  return sum.substr(0, 10)
+}

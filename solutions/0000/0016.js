@@ -7,34 +7,34 @@
  */
 
 module.exports = () => {
-  function multiplyByTwo(num) {
-    let product = '';
+  function multiplyByTwo (num) {
+    let product = ''
 
     for (let exp = 0, carryOver = 0; ; ++exp) {
-      let digit = num[num.length - 1 - exp];
+      let digit = num[num.length - 1 - exp]
 
       if (!digit) {
         if (carryOver > 0) {
-          product = String(carryOver) + product;
+          product = String(carryOver) + product
         }
-        return product;
+        return product
       }
 
-      const digitProd = Number(digit) * 2 + carryOver;
-      product = String(digitProd % 10) + product;
+      const digitProd = Number(digit) * 2 + carryOver
+      product = String(digitProd % 10) + product
       carryOver = Math.floor(digitProd / 10)
     }
   }
 
-  let power = '1';
-  for (let exp = 0, carryOver = 0; exp < 1000; ++exp) {
-    power = multiplyByTwo(power);
+  let power = '1'
+  for (let exp = 0; exp < 1000; ++exp) {
+    power = multiplyByTwo(power)
   }
 
-  let sumOfDigits = 0;
+  let sumOfDigits = 0
   for (const digit of power) {
-    sumOfDigits += Number(digit);
+    sumOfDigits += Number(digit)
   }
 
-  return sumOfDigits;
-};
+  return sumOfDigits
+}

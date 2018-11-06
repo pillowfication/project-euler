@@ -22,22 +22,22 @@
  * efficient algorithm to solve it. ;o)
  */
 
-
 module.exports = () => {
-  const fs = require('fs');
-  const file = fs.readFileSync(__dirname + '/../../resources/p067_triangle.txt');
+  const fs = require('fs')
+  const path = require('path')
+  const file = fs.readFileSync(path.resolve(__dirname, '/../../resources/p067_triangle.txt'))
   const triangle = String(file).split('\n')
-    .map(line => line.split(' ').map(Number));
-  triangle.pop(); // trailing \n
+    .map(line => line.split(' ').map(Number))
+  triangle.pop() // trailing \n
 
   for (let row = 1; row < triangle.length; ++row) {
     for (let col = 0; col < triangle[row].length; ++col) {
-      const left = triangle[row - 1][col - 1] || 0;
-      const right = triangle[row - 1][col] || 0;
-      triangle[row][col] += Math.max(left, right);
+      const left = triangle[row - 1][col - 1] || 0
+      const right = triangle[row - 1][col] || 0
+      triangle[row][col] += Math.max(left, right)
     }
   }
 
-  const lastRow = triangle[triangle.length - 1];
-  return Math.max(...lastRow);
-};
+  const lastRow = triangle[triangle.length - 1]
+  return Math.max(...lastRow)
+}

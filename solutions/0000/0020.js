@@ -11,71 +11,71 @@
  */
 
 module.exports = () => {
-  function addNumbers(a, b) {
-    let sum = '';
+  function addNumbers (a, b) {
+    let sum = ''
 
     for (let exp = 0, carryOver = 0; ; ++exp) {
-      let aDigit = a[a.length - 1 - exp];
-      let bDigit = b[b.length - 1 - exp];
+      let aDigit = a[a.length - 1 - exp]
+      let bDigit = b[b.length - 1 - exp]
 
       if (!aDigit && !bDigit) {
         if (carryOver > 0) {
-          sum = String(carryOver) + sum;
+          sum = String(carryOver) + sum
         }
-        return sum;
+        return sum
       }
 
-      const digitSum = (Number(aDigit) || 0) + (Number(bDigit) || 0) + carryOver;
-      sum = String(digitSum % 10) + sum;
+      const digitSum = (Number(aDigit) || 0) + (Number(bDigit) || 0) + carryOver
+      sum = String(digitSum % 10) + sum
       carryOver = Math.floor(digitSum / 10)
     }
   }
 
-  function multiplyBy(num, multiplier) {
-    const products = [];
+  function multiplyBy (num, multiplier) {
+    const products = []
 
-    multiply: for (let multiExp = 0; multiExp < multiplier.length; ++multiExp) {
-      const multi = multiplier[multiplier.length - 1 - multiExp];
-      let product = '';
+    multiply: for (let multiExp = 0; multiExp < multiplier.length; ++multiExp) { // eslint-disable-line no-labels
+      const multi = multiplier[multiplier.length - 1 - multiExp]
+      let product = ''
 
       for (let exp = 0, carryOver = 0; ; ++exp) {
-        let digit = num[num.length - 1 - exp];
+        let digit = num[num.length - 1 - exp]
 
         if (!digit) {
           if (carryOver > 0) {
-            product = String(carryOver) + product;
+            product = String(carryOver) + product
           }
 
-          product += '0'.repeat(multiExp);
-          products.push(product);
-          continue multiply;
+          product += '0'.repeat(multiExp)
+          products.push(product)
+          continue multiply // eslint-disable-line no-labels
         }
 
-        const digitProd = Number(digit) * Number(multi) + carryOver;
-        product = String(digitProd % 10) + product;
+        const digitProd = Number(digit) * Number(multi) + carryOver
+        product = String(digitProd % 10) + product
         carryOver = Math.floor(digitProd / 10)
       }
     }
 
-    let sum = '0';
+    let sum = '0'
     for (const num of products) {
-      sum = addNumbers(sum, num);
+      sum = addNumbers(sum, num)
     }
 
-    return sum;
+    return sum
   }
 
-  let product = '1';
+  let product = '1'
 
   for (let num = 1; num <= 100; ++num) {
-    product = multiplyBy(product, String(num));
+    product = multiplyBy(product, String(num))
   }
 
-  let digitSum = 0;
+  let digitSum = 0
 
   for (const digit of product) {
-    digitSum += Number(digit);
+    digitSum += Number(digit)
   }
 
-  return digitSum;
-};
+  return digitSum
+}

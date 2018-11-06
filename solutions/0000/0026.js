@@ -22,39 +22,39 @@
  */
 
 module.exports = () => {
-  function getCycleLength(denom) {
-    const decimal = [];
+  function getCycleLength (denom) {
+    const decimal = []
 
     for (let carryOver = 1; ;) {
-      carryOver *= 10;
-      const nextDigit = Math.floor(carryOver / denom);
-      carryOver -= nextDigit * denom;
+      carryOver *= 10
+      const nextDigit = Math.floor(carryOver / denom)
+      carryOver -= nextDigit * denom
 
       if (carryOver === 0) {
-        return 0;
+        return 0
       }
 
       for (let index = 0; index < decimal.length; ++index) {
-        const place = decimal[index];
+        const place = decimal[index]
         if (place.digit === nextDigit && place.carryOver === carryOver) {
-          return decimal.length - index;
+          return decimal.length - index
         }
       }
 
-      decimal.push({digit: nextDigit, carryOver});
+      decimal.push({ digit: nextDigit, carryOver })
     }
   }
 
-  let longestCycle = 0;
-  let d = 0;
+  let longestCycle = 0
+  let d = 0
 
   for (let num = 2; num < 1000; ++num) {
-    let cycleLength = getCycleLength(num);
+    let cycleLength = getCycleLength(num)
     if (cycleLength > longestCycle) {
-      longestCycle = cycleLength;
-      d = num;
+      longestCycle = cycleLength
+      d = num
     }
   }
 
-  return d;
-};
+  return d
+}

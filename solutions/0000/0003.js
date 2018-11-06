@@ -7,15 +7,15 @@
  */
 
 module.exports = () => {
-  let number = 600851475143;
-  let biggestFactor = 1;
+  let number = 600851475143
+  let biggestFactor = 1
 
   for (let factor = 2; factor <= number; ++factor) {
     while (number % factor === 0) {
-      biggestFactor = factor;
-      number /= factor;
+      biggestFactor = factor
+      number /= factor
     }
   }
 
-  return biggestFactor;
-};
+  return biggestFactor
+}

@@ -12,33 +12,33 @@
  */
 
 module.exports = () => {
-  function isPalindrome(str) {
+  function isPalindrome (str) {
     for (let index = 0, length = str.length; index < length / 2; ++index) {
       if (str[index] !== str[length - 1 - index]) {
-        return false;
+        return false
       }
     }
 
-    return true;
+    return true
   }
 
-  function toBinary(num) {
-    let binary = '';
+  function toBinary (num) {
+    let binary = ''
     while (num > 0) {
-      binary = String(num & 1) + binary;
-      num >>= 1;
+      binary = String(num & 1) + binary
+      num >>= 1
     }
 
-    return binary;
+    return binary
   }
 
-  let sum = 0;
+  let sum = 0
 
   for (let num = 1; num < 1000000; ++num) {
     if (isPalindrome(String(num)) && isPalindrome(toBinary(num))) {
-      sum += num;
+      sum += num
     }
   }
 
-  return sum;
-};
+  return sum
+}

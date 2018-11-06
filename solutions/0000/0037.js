@@ -13,60 +13,60 @@
  */
 
 module.exports = () => {
-  const primes = {2: true};
-  let lastChecked = 2;
+  const primes = { 2: true }
+  let lastChecked = 2
 
-  function isPrime(num) {
+  function isPrime (num) {
     if (num <= lastChecked) {
-      return primes[num] === true;
+      return primes[num] === true
     }
 
-    let sieve = {};
-    const start = lastChecked + 1;
+    let sieve = {}
+    const start = lastChecked + 1
 
     for (const _prime in primes) {
-      const prime = Number(_prime);
+      const prime = Number(_prime)
       for (let index = start - (start % prime || prime) + prime; index <= num; index += prime) {
-        sieve[index] = true;
+        sieve[index] = true
       }
     }
 
     for (let check = start; check <= num; ++check) {
       if (sieve[check] !== true) {
-        primes[check] = true;
+        primes[check] = true
         for (let notPrime = check * 2; notPrime <= num; notPrime += check) {
-          sieve[notPrime] = true;
+          sieve[notPrime] = true
         }
       }
     }
 
-    lastChecked = num;
-    return primes[num] === true;
+    lastChecked = num
+    return primes[num] === true
   }
 
-  let sum = 0;
-  let found = 0;
+  let sum = 0
+  let found = 0
 
-  for (let list = [2, 3, 5, 7], next = []; found < 11; [list, next] = [next, []]) {
+  for (let list = [ 2, 3, 5, 7 ], next = []; found < 11; [ list, next ] = [ next, [] ]) {
     for (const item of list) {
-      search: for (let odd = 1; odd <= 9; odd += 2) {
-        const number = item * 10 + odd;
+      search: for (let odd = 1; odd <= 9; odd += 2) { // eslint-disable-line no-labels
+        const number = item * 10 + odd
 
         if (isPrime(number)) {
-          next.push(number);
+          next.push(number)
 
           for (let checkLeft = number; checkLeft > 0; checkLeft = Number(String(checkLeft).slice(1))) {
             if (!isPrime(checkLeft)) {
-              continue search;
+              continue search // eslint-disable-line no-labels
             }
           }
 
-          sum += number;
-          ++found;
+          sum += number
+          ++found
         }
       }
     }
   }
 
-  return sum;
-};
+  return sum
+}

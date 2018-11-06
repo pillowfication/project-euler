@@ -7,20 +7,20 @@
  */
 
 module.exports = () => {
-  const isNotPrime = [];
-  let sum = 0;
+  const isNotPrime = []
+  let sum = 0
 
   for (let num = 2; num < 2000000; ++num) {
     if (isNotPrime[num]) {
-      continue;
+      continue
     }
 
-    sum += num;
+    sum += num
 
     for (let notPrime = num * 2; notPrime < 2000000; notPrime += num) {
-      isNotPrime[notPrime] = true;
+      isNotPrime[notPrime] = true
     }
   }
 
-  return sum;
-};
+  return sum
+}

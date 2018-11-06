@@ -14,38 +14,38 @@
  */
 
 module.exports = () => {
-  const dCache = {};
-  function d(n) {
+  const dCache = {}
+  function d (n) {
     if (dCache[n]) {
-      return dCache[n];
+      return dCache[n]
     }
 
-    const sqrt = Math.sqrt(n);
-    let sum = 0;
+    const sqrt = Math.sqrt(n)
+    let sum = 0
 
     for (let i = 1; i < sqrt; ++i) {
       if (n % i === 0) {
-        sum += i;
-        sum += n / i;
+        sum += i
+        sum += n / i
       }
     }
 
     if (Math.floor(sqrt) === sqrt) {
-      sum += sqrt;
+      sum += sqrt
     }
 
-    sum -= n; // less than n
-    dCache[n] = sum;
-    return sum;
+    sum -= n // less than n
+    dCache[n] = sum
+    return sum
   }
 
-  let sum = 0;
+  let sum = 0
 
   for (let num = 1; num < 10000; ++num) {
     if (num !== d(num) && num === d(d(num))) {
-      sum += num;
+      sum += num
     }
   }
 
-  return sum;
-};
+  return sum
+}

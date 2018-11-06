@@ -15,26 +15,27 @@
  */
 
 module.exports = () => {
-  const fs = require('fs');
-  const file = fs.readFileSync(__dirname + '/../../resources/p022_names.txt');
+  const fs = require('fs')
+  const path = require('path')
+  const file = fs.readFileSync(path.resolve(__dirname, '/../../resources/p022_names.txt'))
   let names = String(file).split(',')
-    .map(name => name.replace(/[^A-Z]/g, ''));
+    .map(name => name.replace(/[^A-Z]/g, ''))
 
-  names = names.sort();
+  names = names.sort()
 
-  function nameScore(name) {
-    let score = 0;
+  function nameScore (name) {
+    let score = 0
     for (const char of name) {
-      score += char.charCodeAt(0) - 64; // charCode of 'A' = 65;
+      score += char.charCodeAt(0) - 64 // charCode of 'A' = 65
     }
-    return score;
+    return score
   }
 
-  let sum = 0;
+  let sum = 0
 
   for (let index = 0; index < names.length; ++index) {
-    sum += (index + 1) * nameScore(names[index]);
+    sum += (index + 1) * nameScore(names[index])
   }
 
-  return sum;
-};
+  return sum
+}

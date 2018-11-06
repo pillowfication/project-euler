@@ -24,7 +24,7 @@ module.exports = () => {
     7: 'seven',
     8: 'eight',
     9: 'nine'
-  };
+  }
   const tensNames = {
     1: 'ten',
     2: 'twenty',
@@ -35,7 +35,7 @@ module.exports = () => {
     7: 'seventy',
     8: 'eighty',
     9: 'ninety'
-  };
+  }
   const teensNames = {
     1: 'eleven',
     2: 'twelve',
@@ -46,47 +46,43 @@ module.exports = () => {
     7: 'seventeen',
     8: 'eighteen',
     9: 'nineteen'
-  };
+  }
 
-  function getName(number) {
-    const ones = number % 10;
-    const tens = Math.floor(number / 10) % 10;
-    const hundreds = Math.floor(number / 100);
+  function getName (number) {
+    const ones = number % 10
+    const tens = Math.floor(number / 10) % 10
+    const hundreds = Math.floor(number / 100)
 
-    let name;
+    let name
 
     if (ones === 0 && tens > 0) {
-      name = tensNames[tens];
-    }
-    else if (ones > 0 && tens === 0) {
-      name = onesNames[ones];
-    }
-    else if (tens === 1) {
-      name = teensNames[ones];
-    }
-    else if (tens > 1) {
-      name = `${tensNames[tens]}-${onesNames[ones]}`;
+      name = tensNames[tens]
+    } else if (ones > 0 && tens === 0) {
+      name = onesNames[ones]
+    } else if (tens === 1) {
+      name = teensNames[ones]
+    } else if (tens > 1) {
+      name = `${tensNames[tens]}-${onesNames[ones]}`
     }
 
     if (!name && hundreds > 0) {
-      name = `${onesNames[hundreds]} hundred`;
-    }
-    else if (hundreds > 0) {
-      name = `${onesNames[hundreds]} hundred and ${name}`;
+      name = `${onesNames[hundreds]} hundred`
+    } else if (hundreds > 0) {
+      name = `${onesNames[hundreds]} hundred and ${name}`
     }
 
-    return name;
+    return name
   }
 
-  let letterCount = 0;
+  let letterCount = 0
 
   for (let num = 1; num <= 999; ++num) {
-    const name = getName(num);
-    const letters = name.replace(/[^a-z]/g, '');
-    letterCount += letters.length;
+    const name = getName(num)
+    const letters = name.replace(/[^a-z]/g, '')
+    letterCount += letters.length
   }
 
-  letterCount += 'one thousand'.replace(/[^a-z]/g, '').length;
+  letterCount += 'one thousand'.replace(/[^a-z]/g, '').length
 
-  return letterCount;
-};
+  return letterCount
+}
